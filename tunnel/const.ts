@@ -1,0 +1,3 @@
+export const FIRE_CHANNEL = 'FIRE_CHANNEL';
+
+export const CALLBACK_CHANNEL = 'CALLBACK_CHANNEL';

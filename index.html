@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <script>
+      // You can also require other files to run in this process
+      // ../web/index.js
+
+      let $btn = document.querySelector('h1');
+
+$btn1.addEventListener('click', function() {
+  if (__ELECTRON__ && ElectronBridge) { //electron 环境
+    ElectronBridge.setFullScreen((err) => {
+      if (err) return;
+      console.log('done');
+    });
+  } else { //web 环境
+    alert('不能设置全屏')
+    //do something else
+  }
+});
+    </script>
+  </body>
+</html>
