@@ -1,8 +1,8 @@
 /**
  * 监听渲染进程对主进程的调用，执行完任务后通知渲染进程
  */
-import * as Electron from 'electron';
-import { FIRE_CHANNEL, CALLBACK_CHANNEL } from './const';
+const Electron = require('electron');
+const { FIRE_CHANNEL, CALLBACK_CHANNEL } = require('./const');
 const { ipcMain } = Electron;
 function isPromise(obj) {
     const toString = Object.prototype.toString;
@@ -12,7 +12,7 @@ let eventsList;
 let cusParams;
 let ifIpcMainSetUp = false;
 // 监听对原生的调用
-export function ipcMainSetup() {
+const ipcMainSetup = () => {
     if (ifIpcMainSetUp) {
         return;
     }
@@ -56,7 +56,8 @@ export function ipcMainSetup() {
 if (typeof window === 'undefined') {
     ipcMainSetup();
 }
-export function registEvents(events, params) {
+exports.ipcMainSetup = ipcMainSetup
+exports.registEvents = (events, params) => {
     eventsList = events;
     cusParams = params;
 }

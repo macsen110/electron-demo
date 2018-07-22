@@ -1,33 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+<html lang="en">
 
-    <script>
-      // You can also require other files to run in this process
-      // ../web/index.js
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
 
-      let $btn = document.querySelector('h1');
+<body>
+  <div>
+    <button class="set-full-screen">set-full-screen</button>
+  </div>
+  <div>
+    <button class="quit-full-screen">quit-full-screen</button>
+  </div>
+  <div>
+    <button class="print">print hello world terminal 3s later</button>
+  </div>
 
-$btn1.addEventListener('click', function() {
-  if (__ELECTRON__ && ElectronBridge) { //electron 环境
-    ElectronBridge.setFullScreen((err) => {
-      if (err) return;
-      console.log('done');
+  <script>
+    console.log(callEvent)
+    var $setFullScreenBtn = document.querySelector('.set-full-screen');
+    var $quitFullScreenBtn = document.querySelector('.quit-full-screen');
+    var $print = document.querySelector('.print');
+
+    $setFullScreenBtn.addEventListener('click', function () {
+      callEvent('SET_FULL_SCREEN');
     });
-  } else { //web 环境
-    alert('不能设置全屏')
-    //do something else
-  }
-});
-    </script>
-  </body>
+
+    $quitFullScreenBtn.addEventListener('click', function () {
+      callEvent('QUIT_FULL_SCREEN');
+    });
+
+    $print.addEventListener('click', function () {
+      callEvent('ASYNC_EVENT', { word: 'hello world' }).then(() => {
+        console.log('done');
+      });
+    });
+  </script>
+</body>
+
 </html>

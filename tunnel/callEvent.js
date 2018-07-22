@@ -1,10 +1,10 @@
-import * as Electron from 'electron';
-import { FIRE_CHANNEL, CALLBACK_CHANNEL } from './const';
+const Electron = require('electron');
+const { FIRE_CHANNEL, CALLBACK_CHANNEL } = require('./const');
 const { ipcRenderer } = Electron;
 const eventsStack = {};
 let id = 0;
 let ifIpcRenderSetUp = false;
-export function ipcRendererSetup() {
+const ipcRendererSetup = () => {
     if (ifIpcRenderSetUp) {
         return;
     }
@@ -27,8 +27,10 @@ export function ipcRendererSetup() {
 if (typeof window !== 'undefined') {
     ipcRendererSetup();
 }
+
+exports.ipcRendererSetup = ipcRendererSetup
 // 调用原生事件
-export function callEvent(eventName, params = {}) {
+exports.callEvent = (eventName, params = {}) => {
     id++;
     return new Promise((resolve, reject) => {
         const event = Object.assign({ id: String(id) }, { eventName }, { params });

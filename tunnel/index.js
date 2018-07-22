@@ -1,5 +1,5 @@
-import { ipcRendererSetup, callEvent } from './callEvent';
-import { ipcMainSetup, registEvents } from './registEvents';
+const { ipcRendererSetup, callEvent } = require('./callEvent');
+const { ipcMainSetup, registEvents } =require('./registEvents');
 module.exports = {
     ipcRendererSetup,
     ipcMainSetup,
