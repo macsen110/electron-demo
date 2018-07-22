@@ -18,7 +18,7 @@ app.on('ready', () => {
   //监听web对原生事件的调用
   registEvents(events, [app, win]);
 
-  win.loadURL(`file://${__dirname}/index.html`);
+  win.loadURL(`https://www.macsen318.com`);
 
   win.webContents.openDevTools();
 
