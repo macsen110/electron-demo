@@ -23,7 +23,6 @@ app.on('ready', () => {
   win.webContents.openDevTools();
 
   win.on('closed', function() {
-    win = null;
     app.quit();
   });
 });
