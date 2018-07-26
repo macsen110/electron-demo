@@ -5,8 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "pack": "electron-builder --dir && build -w",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "repository": "https://github.com/macsen110/electron-demo",
   "keywords": [
@@ -23,9 +24,20 @@
     "electron-builder": "^20.24.5"
   },
   "build": {
-    "appId": "your.id",
+    "appId": "org.develar.ElectronReact",
     "mac": {
-      "category": "your.app.category.type"
+      "category": "Development"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
     }
   }
 }
