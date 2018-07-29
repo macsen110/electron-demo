@@ -10,6 +10,10 @@ const {registEvents} = require('./tunnel/index.js');
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
+function sendStatusToWindow(text) {
+  log.info(text);
+  win.webContents.send('message', text);
+}
 
 autoUpdater.on('checking-for-update', () => {
   sendStatusToWindow('Checking for update...');
