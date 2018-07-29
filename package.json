@@ -39,5 +39,9 @@
         }
       ]
     }
+  },
+  "dependencies": {
+    "electron-log": "^2.2.16",
+    "electron-updater": "^3.0.3"
   }
 }
