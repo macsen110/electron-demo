@@ -6,17 +6,8 @@ const events = require('./events/index.js');
 const path = require('path');
 
 const {registEvents} = require('./tunnel/index.js');
-const win;
-app.on('ready', () => {
-  win = new BrowserWindow({
-    width: 800,
-    height: 800,
-    webPreferences: {
-      preload: path.join(__dirname, './index.js'),
-      plugins: true,
-      nodeIntegration: false,
-    }
-  });
+
+
 
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
@@ -49,7 +40,16 @@ autoUpdater.on('update-downloaded', (info) => {
 });
 
 
-
+app.on('ready', () => {
+  const win = new BrowserWindow({
+    width: 1000,
+    height: 1000,
+    webPreferences: {
+      preload: path.join(__dirname, './index.js'),
+      plugins: true,
+      nodeIntegration: false,
+    }
+  });
 
   //监听web对原生事件的调用
   registEvents(events, [app, win]);
@@ -61,6 +61,7 @@ autoUpdater.on('update-downloaded', (info) => {
   win.on('closed', function() {
     app.quit();
   });
+  autoUpdater.checkForUpdatesAndNotify();
 });
 
 // Quit when all windows are closed.
