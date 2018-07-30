@@ -1,13 +1,14 @@
 {
   "name": "electron-quick-start",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir && build -w",
     "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "publish": "build -p always"
   },
   "repository": "https://github.com/macsen110/electron-demo",
   "keywords": [
@@ -37,7 +38,8 @@
             "ia32"
           ]
         }
-      ]
+      ],
+      "publish": ["github"]
     }
   },
   "dependencies": {
