@@ -42,8 +42,8 @@ autoUpdater.on('update-downloaded', (info) => {
 
 app.on('ready', () => {
   const win = new BrowserWindow({
-    width: 1000,
-    height: 1000,
+    width: 1500,
+    height: 1200,
     webPreferences: {
       preload: path.join(__dirname, './index.js'),
       plugins: true,
