@@ -1,14 +1,14 @@
 {
   "name": "electron-quick-start",
-  "version": "10.0.0",
+  "version": "9.1.0",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir && build -w",
+    "pack": "electron-builder --dir && build -mw",
     "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps",
-    "publish": "build --mac --win -p always"
+    "publish": "build --mac --win -p always",
+    "win": "electron-packager . electron-quick-start --platform win32 --arch ia32 --out dist/ --ignore \"(dist|node_modules/electron.*)\" --overwrite"
   },
   "repository": "https://github.com/macsen110/electron-demo",
   "keywords": [
@@ -27,25 +27,29 @@
   "build": {
     "appId": "org.develar.ElectronReact",
     "mac": {
-      "category": "Development"
+      "category": "Development",
+      "target": [
+        "zip",
+        "dmg"
+      ]
     },
     "win": {
       "target": [
         {
-          "target": "NSIS",
+          "target": "zip",
           "arch": [
             "x64",
             "ia32"
           ]
         }
       ],
-      "publish": 
-        {
-          "provider": "github"
-        }
+      "publish": [
+        "github"
+      ]
     }
   },
   "dependencies": {
+    "electron-is-dev": "^0.3.0",
     "electron-log": "^2.2.16",
     "electron-updater": "^3.0.3"
   }

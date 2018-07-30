@@ -1,22 +1,23 @@
 const electron = require('electron');
 const { app, BrowserWindow, dialog } = electron;
 const log = require('electron-log');
-const {autoUpdater} = require("electron-updater");
+const autoUpdater = require('electron').autoUpdater;
 const events = require('./events/index.js');
 const path = require('path');
+const isDev = require('electron-is-dev');
+process.env.NODE_ENV = 'production'
 var win = '';
 const {registEvents} = require('./tunnel/index.js');
+console.log(autoUpdater)
 
-
-
-autoUpdater.logger = log;
-autoUpdater.logger.transports.file.level = 'info';
+// autoUpdater.logger = log;
+// autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
 function sendStatusToWindow(text) {
   log.info(text);
   setTimeout(() => win.webContents.send('message', text), 5000);
 }
-setTimeout(() => win.webContents.send('message', 'ready'), 10000);
+//setTimeout(() => win.webContents.send('message', 'ready'), 10000);
 autoUpdater.on('checking-for-update', () => {
   dialog.showMessageBox({
     title: 'Check',
@@ -34,7 +35,7 @@ autoUpdater.on('update-available', (info) => {
 autoUpdater.on('update-not-available', (info) => {
   dialog.showMessageBox({
     title: 'update not available',
-    message: 's'
+    message: 'update not available'
   })
   sendStatusToWindow('Update not available.');
 })
@@ -45,7 +46,6 @@ autoUpdater.on('download-progress', (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
   log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-  
   sendStatusToWindow(log_message);
 })
 autoUpdater.on('update-downloaded', (info) => {
@@ -55,6 +55,7 @@ autoUpdater.on('update-downloaded', (info) => {
     message: 'log_message'
   })
 });
+
 
 
 app.on('ready', () => {
@@ -78,12 +79,13 @@ app.on('ready', () => {
   win.on('closed', function() {
     app.quit();
   });
-  setTimeout(() => autoUpdater.checkForUpdatesAndNotify(), 5000);
-  dialog.showMessageBox({
-    title: 'start',
-    message: 'check...'
-  })
-  sendStatusToWindow('app ready to check');
+  setTimeout(() => autoUpdater.checkForUpdates(), 5000);
+  // dialog.showMessageBox({
+  //   title: 'start',
+  //   message: 'check...'
+  // })
+  //sendStatusToWindow('app ready to check');
+  autoUpdater.setFeedURL('https://www.macsen318.com/api/home/')
 });
 
 // Quit when all windows are closed.
