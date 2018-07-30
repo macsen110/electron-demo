@@ -4,7 +4,7 @@ const log = require('electron-log');
 const {autoUpdater} = require("electron-updater");
 const events = require('./events/index.js');
 const path = require('path');
-
+var win = '';
 const {registEvents} = require('./tunnel/index.js');
 
 
@@ -14,9 +14,9 @@ autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
 function sendStatusToWindow(text) {
   log.info(text);
-  win.webContents.send('message', text);
+  setTimeout(() => win.webContents.send('message', text), 5000);
 }
-
+setTimeout(() => win.webContents.send('message', 'ready'), 10000);
 autoUpdater.on('checking-for-update', () => {
   dialog.showMessageBox({
     title: 'Check',
@@ -58,7 +58,7 @@ autoUpdater.on('update-downloaded', (info) => {
 
 
 app.on('ready', () => {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 1500,
     height: 1200,
     webPreferences: {
@@ -78,11 +78,12 @@ app.on('ready', () => {
   win.on('closed', function() {
     app.quit();
   });
-  autoUpdater.checkForUpdatesAndNotify();
+  setTimeout(() => autoUpdater.checkForUpdatesAndNotify(), 5000);
   dialog.showMessageBox({
     title: 'start',
     message: 'check...'
   })
+  sendStatusToWindow('app ready to check');
 });
 
 // Quit when all windows are closed.

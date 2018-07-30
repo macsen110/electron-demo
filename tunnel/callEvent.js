@@ -11,6 +11,9 @@ const ipcRendererSetup = () => {
     else {
         ifIpcRenderSetUp = true;
     }
+    ipcRenderer.on('message', (event, message) => {
+        console.log(message)
+    })
     ipcRenderer.on(CALLBACK_CHANNEL, (e, arg) => {
         const event = eventsStack[arg.id];
         if (event) {
