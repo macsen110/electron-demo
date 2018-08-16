@@ -1,7 +1,7 @@
 const electron = require('electron');
 const { app, BrowserWindow, dialog } = electron;
 const log = require('electron-log');
-const autoUpdater = require('electron').autoUpdater;
+const {autoUpdater} = require('electron-updater');
 const events = require('./events/index.js');
 const path = require('path');
 const isDev = require('electron-is-dev');
@@ -54,6 +54,7 @@ autoUpdater.on('update-downloaded', (info) => {
     title: 'progress',
     message: 'log_message'
   })
+  autoUpdater.quitAndInstall(); 
 });
 
 
@@ -79,13 +80,13 @@ app.on('ready', () => {
   win.on('closed', function() {
     app.quit();
   });
-  setTimeout(() => autoUpdater.checkForUpdates(), 5000);
+  setTimeout(() => autoUpdater.checkForUpdatesAndNotify(), 5000);
   // dialog.showMessageBox({
   //   title: 'start',
   //   message: 'check...'
   // })
   //sendStatusToWindow('app ready to check');
-  autoUpdater.setFeedURL('https://www.macsen318.com/api/home/')
+  //autoUpdater.setFeedURL('https://www.macsen318.com/api/home/')
 });
 
 // Quit when all windows are closed.
