@@ -1,11 +1,11 @@
 {
   "name": "electron-quick-start",
-  "version": "9.1.0",
+  "version": "10.1.1",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir && build -mw",
+    "pack": "electron-builder --dir && build -m",
     "dist": "electron-builder",
     "publish": "build --mac --win -p always",
     "win": "electron-packager . electron-quick-start --platform win32 --arch ia32 --out dist/ --ignore \"(dist|node_modules/electron.*)\" --overwrite"
