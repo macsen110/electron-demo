@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir && build -m",
+    "pack": "electron-builder --dir && build -w",
     "dist": "electron-builder",
     "publish": "build --mac --win -p always",
     "win": "electron-packager . electron-quick-start --platform win32 --arch ia32 --out dist/ --ignore \"(dist|node_modules/electron.*)\" --overwrite"
@@ -21,10 +21,11 @@
   "author": "Liangyusen",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^2.0.0",
+    "electron": "^2.0.7",
     "electron-builder": "^20.24.5"
   },
   "build": {
+    "icon": "public/icons/icon.png",
     "appId": "org.develar.ElectronReact",
     "mac": {
       "category": "Development",
@@ -34,6 +35,7 @@
       ]
     },
     "win": {
+      "icon": "public/icons/icon.png",
       "target": [
         {
           "target": "zip",
@@ -51,6 +53,7 @@
   "dependencies": {
     "electron-is-dev": "^0.3.0",
     "electron-log": "^2.2.16",
-    "electron-updater": "^3.0.3"
+    "electron-updater": "^3.0.3",
+    "downloads-folder": "^1.0.1"
   }
 }

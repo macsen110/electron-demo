@@ -31,7 +31,7 @@ const ipcMainSetup = () => {
             return;
         }
         // 主进程支持的事件
-        const result = nativeEvent(params, ...cusParams);
+        const result = nativeEvent(params, cusParams);
         if (isPromise(result)) { // 如果返回promise
             result.then(res => {
                 event.sender.send(CALLBACK_CHANNEL, {
