@@ -2,7 +2,7 @@
 
 //进入全屏
 function setFullScreen(params, __base) {
-  return __base.setFullScreen(true);
+  return __base.win.setFullScreen(true);
 }
 
 //退出全屏

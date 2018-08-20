@@ -1,6 +1,6 @@
 {
   "name": "electron-quick-start",
-  "version": "10.1.1",
+  "version": "8.1.1",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
@@ -51,9 +51,10 @@
     }
   },
   "dependencies": {
+    "downloads-folder": "^1.0.1",
     "electron-is-dev": "^0.3.0",
     "electron-log": "^2.2.16",
     "electron-updater": "^3.0.3",
-    "downloads-folder": "^1.0.1"
+    "shortcut-capture": "^1.0.1"
   }
 }
