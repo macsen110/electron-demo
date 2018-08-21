@@ -1,5 +1,5 @@
 {
-  "name": "electron-quick-start",
+  "name": "yyw_im_client",
   "version": "8.1.1",
   "description": "A minimal Electron application",
   "main": "main.js",
@@ -8,15 +8,12 @@
     "pack": "electron-builder --dir && build -w",
     "dist": "electron-builder",
     "publish": "build --mac --win -p always",
-    "win": "electron-packager . electron-quick-start --platform win32 --arch ia32 --out dist/ --ignore \"(dist|node_modules/electron.*)\" --overwrite"
+    "win": "electron-packager . yyw_im_client --platform win32 --arch ia32 --out dist/ --ignore \"(dist|node_modules/electron.*)\" --overwrite"
   },
   "repository": "https://github.com/macsen110/electron-demo",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "im"
   ],
   "author": "Liangyusen",
   "license": "CC0-1.0",
@@ -28,7 +25,7 @@
     "icon": "public/icons/icon.png",
     "appId": "org.develar.ElectronReact",
     "mac": {
-      "category": "Development",
+      "category": "im_client",
       "target": [
         "zip",
         "dmg"
@@ -54,7 +51,6 @@
     "downloads-folder": "^1.0.1",
     "electron-is-dev": "^0.3.0",
     "electron-log": "^2.2.16",
-    "electron-updater": "^3.0.3",
-    "shortcut-capture": "^1.0.1"
+    "electron-updater": "^3.0.3"
   }
 }
