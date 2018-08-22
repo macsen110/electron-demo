@@ -1,12 +1,6 @@
 const { FIRE_CHANNEL, CALLBACK_CHANNEL } = require('./const');
 const { ipcRenderer} = require('electron');;
-const {
-    screenShot
-} = require('../renderEvents');
-
-const renderEventsMap = {
-    "SCREEN_SHOT": screenShot
-}
+const renderEventsMap = require('../renderEvents');
 const eventsStack = {};
 let id = 0;
 let ifIpcRenderSetUp = false;
@@ -40,7 +34,7 @@ exports.ipcRendererSetup = ipcRendererSetup
 exports.version = '0.0.1'
 // 调用原生事件
 exports.callEvent = (eventName, params = {}) => {
-    if (renderEventsMap[eventName]) return renderEventsMap[eventName]()
+    if (renderEventsMap[eventName]) return renderEventsMap[eventName](params)
     id++;
     return new Promise((resolve, reject) => {
         const event = Object.assign({ id: String(id) }, { eventName }, { params });

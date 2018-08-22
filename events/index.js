@@ -9,8 +9,10 @@ const {
     showScreen,
     isFocusedScreen,
     focusScreen
-  } = require('./screen.js');
-  
+  } = require('./screen');
+  const {
+    getVersion
+  } = require('./app');
   module.exports = {
     'SET_FULL_SCREEN': setFullScreen,
     'QUIT_FULL_SCREEN': quitFullScreen,
@@ -21,5 +23,6 @@ const {
     'IS_VISIBLE_SCREEN': isVisibleScreen,
     'SHOW_SCREEN': showScreen,
     'IS_FOCUS_SCREEN': isFocusedScreen,
-    'FOCUS_SCREEN': focusScreen
+    'FOCUS_SCREEN': focusScreen,
+    'GET_VERSION': getVersion
   };
