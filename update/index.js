@@ -1,4 +1,4 @@
-const { autoUpdater } = require('electron-updater');
+const { autoUpdater } = require('electron');
 const {sendMsgToWin} = require('../tools');
 const log = require('electron-log')
 autoUpdater.logger = log;
@@ -46,6 +46,6 @@ autoUpdater.on('update-downloaded', (info) => {
 exports.init = (_window, _dialog) => {
   win = _window;
   dialog = _dialog;
-  // setTimeout(() => autoUpdater.checkForUpdatesAndNotify(), 5000);
-  // autoUpdater.setFeedURL('https://www.macsen318.com/api/home/')
+  setTimeout(() => autoUpdater.checkForUpdates(), 5000);
+  autoUpdater.setFeedURL('https://www.macsen318.com/api/home/')
 }

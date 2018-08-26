@@ -6,7 +6,7 @@ const events = require('./events/index.js');
 const { registEvents } = require('./tunnel/index.js');
 const elecronUpdate = require('./update');
 const menuTemplate = require('./menu')
-const loadURL = isDev ? 'http://10.6.52.31:8082' : 'http://m.111.com.cn:8881/#/';
+const loadURL = isDev ? 'https://www.macsen318.com' : 'https://www.macsen318.com';
 process.env.NODE_ENV = 'production'
 var win = '';
 

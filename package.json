@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir && build -w",
+    "pack": "electron-builder --dir && build -mw",
     "dist": "electron-builder",
     "publish": "build --mac --win -p always",
     "win": "electron-packager . yyw_im_client --platform win32 --arch ia32 --out dist/ --ignore \"(dist|node_modules/electron.*)\" --overwrite"
@@ -41,9 +41,6 @@
             "ia32"
           ]
         }
-      ],
-      "publish": [
-        "github"
       ]
     }
   },
