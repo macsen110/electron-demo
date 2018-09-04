@@ -24,7 +24,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 2;
+            z-index: 4;
             cursor: move;
             display: none;
         }
@@ -46,6 +46,7 @@
         
         #canvas {
             position: absolute;
+            z-index: 3;
         }
         
         .tool {
@@ -131,6 +132,7 @@
 </head>
 
 <body>
+    <img id="__img" src="" alt="">
     <canvas id='canvas'></canvas>
     <canvas id='canvasMask' data-drag='drag'></canvas>
     <!--<div data-drag='drag' id='drag'></div>-->
@@ -145,7 +147,7 @@
     <span data-zoom='zoom' class="icon right_top"></span>
     <span data-zoom='zoom' class="icon left_bottom"></span>
     <span data-zoom='zoom' class="icon right_bottom"></span>
-    <img id="__img" src="" alt="">
+    
 </body>
 <script src="./main-process.js"></script>
 

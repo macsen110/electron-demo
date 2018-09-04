@@ -20,9 +20,7 @@ class Screen {
         this.height = screen.height;
         this.canvas.width = this.width;
         this.canvas.height = this.height;
-
-
-        this.image = new Image();
+        this.image = document.getElementById('__img');
         this.image.src = src;
 
         this.cuted = false;
@@ -46,10 +44,7 @@ class Screen {
         // this.drawImg(this.image); 
 
 
-        this.createMask();
-
-        this.getMouse();
-
+       
 
 
         // 绑定this到原型链上
@@ -66,6 +61,10 @@ class Screen {
         this.sendMsg = this.sendMsg.bind(this)
         this.RGBA2ImageData = this.RGBA2ImageData.bind(this)
         this.dragEvent = this.dragEvent.bind(this)
+        this.createMask();
+
+        this.getMouse();
+
     }
 
     // 创建一个黑色透明蒙版画布
@@ -97,8 +96,7 @@ class Screen {
 
         // 鼠标按下
         function down(ev) {
-            // console.log(ev)
-            document.onselectstart = function() {
+            document.onselectstart = function () {
                 return false;
             }
             if (ev.target.dataset.done) {
@@ -133,7 +131,6 @@ class Screen {
 
         // 鼠标移动
         function move(ev) {
-            console.log('ee')
             if (!that.cuted) {
                 // console.log('<<<---cuted---->>>')
                 that.tipShow(end.x, end.y, that.start.x, that.start.y);
@@ -193,6 +190,7 @@ class Screen {
         // 创建选区矩形
         // 复制选区像素数据到主画布中
         this.imgData = this.createReatImage(x, y, _x, _y);
+        if (!this.imgData) return;
         if (!data) {
             this.canvasMask.width = this.imgData.width;
             this.canvasMask.height = this.imgData.height;
@@ -228,6 +226,7 @@ class Screen {
         var canvas = document.createElement('canvas');
         canvas.width = this.width;
         canvas.height = this.height;
+        if (x - _x == 0) return;
         var ctx = canvas.getContext('2d');
         ctx.drawImage(this.image, 0, 0);
         var imgData = ctx.getImageData(_x, _y, x - _x, y - _y);
@@ -377,9 +376,9 @@ class Screen {
         var imgData = this.RGBA2ImageData(this.imgData);
         remote.getCurrentWindow().setAlwaysOnTop(false);
 
-        remote.dialog.showSaveDialog({ filters: [{ name: 'Images', extensions: ['jpg', 'png', 'gif'] }] }, function(pathStr) {
+        remote.dialog.showSaveDialog({ filters: [{ name: 'Images', extensions: ['jpg', 'png', 'gif'] }] }, function (pathStr) {
             if (pathStr) {
-                fs.writeFile(pathStr, new Buffer(imgData.replace('data:image/png;base64,', ''), 'base64'), function() {
+                fs.writeFile(pathStr, new Buffer(imgData.replace('data:image/png;base64,', ''), 'base64'), function () {
                     that.close({
                         data: imgData,
                         path: pathStr
