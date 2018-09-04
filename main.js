@@ -14,7 +14,6 @@ app.on('ready', () => {
   win = new BrowserWindow({
     width: 1500,
     height: 1200,
-    backgroundColor: '#2e2c29',
     webPreferences: {
       preload: path.join(__dirname, './bridge.js'),
       plugins: true,
